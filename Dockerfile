@@ -1,11 +1,8 @@
-FROM php:7-apache
+# Pull tomcat latest image from dockerhub 
+From tomcat:latest
 
-COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
-COPY start-apache /usr/local/bin
-RUN a2enmod rewrite
+# Maintainer
+MAINTAINER "prashant" 
 
-# Copy application source
-COPY src /var/www/
-RUN chown -R www-data:www-data /var/www
-
-CMD ["start-apache"]
+# copy war file on to container 
+COPY ./webapp.war /usr/local/tomcat/webapps
